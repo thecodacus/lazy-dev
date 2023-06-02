@@ -36,12 +36,11 @@ here are some clarrification on the requirements
 your current task is to design the folder and and files structure for this project
 you should follow the below format to answer this question 
 
-Plan : <your plan here> //tell us a very detailed, verbose plan or thought on how you want to proceed before writing the files  for example which framework you are going to use
+Plan : <your plan here> //tell us a very detailed, verbose plan or thought on how you want to proceed before writing the files  for example which framework you are going to use,dont forget to mention framewark related configuration files. Discuss project architecture so junior developer can understand very easily
 
 As your response will go to an automated parser, things to keep in mind all the time:
 * follow the exact format provided above without fail
-* the folder and files structure should be complete, means means no additional files will be required to create to run the program, for example if its nodejs project add package.json if its a python project add requirements.txt etc..
-* do not write the contents of the files that will be done by the next devepoler
+* be detailed so junior developer can understand very easily
 Begin!
 """
     @staticmethod
@@ -95,4 +94,35 @@ As your response will go to an automated parser, things to keep in mind all the 
 * do not write any explanation
 Begin!
         """
+    @staticmethod
+    def write_file(question,clarifications:str,plan:str,files_written:List[List[str]], file_path_to_write:str)->str:
+        file_with_conent="\n\n".join([f"File:{file_path}\nContent:\n{content}" for file_path,content in files_written])
+        return f"""
+you are a senior programmer below is what your client have asked you to do:
+---
+{question}
+---
+here are some clarrification on the requirements
+---
+{clarifications}
+---
+below is the what you have already planed what to do:
+---
+{plan}
+---
+
+you are now writing the code below are the files that already written with content as follows:
+---
+{file_with_conent}
+---
+
+now you are about to write content the following file:
+{file_path_to_write}
+
+As your response will go to an automated parser, things to keep in mind all the time:
+* follow the exact format provided above without fail
+* only write the file content, no expiation, no pretext.
+* always add comments at the begening, which expains what you are about to do
+Begin!
+"""
 
