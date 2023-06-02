@@ -1,7 +1,20 @@
 
 from typing import List
-from .prompts import PrompBook
+from .prompts import PromptBook
 from langchain.llms import OpenAI
+from langchain.chat_models import ChatOpenAI
+from langchain.prompts.chat import (
+    ChatPromptTemplate,
+    SystemMessagePromptTemplate,
+    AIMessagePromptTemplate,
+    HumanMessagePromptTemplate,
+)
+from langchain.schema import (
+    AIMessage,
+    HumanMessage,
+    SystemMessage
+)
+
 import json
 
 from .utils import Utilities
@@ -11,16 +24,24 @@ class Developer():
         self.requirement=requirement
         self.root_dir=root_dir
         self.api_key=openai_api_key
-        self.brain = OpenAI(
-            model_name="gpt-3.5-turbo",
+        self.brain = ChatOpenAI(
+            model="gpt-3.5-turbo",
             openai_api_key=self.api_key,
             temperature=0,
             streaming=False
             )
-
+        
+    def brain_storm(self,prompt:str)->str:
+        messages = [
+            SystemMessage(content="you are a senior software developer"),
+            HumanMessage(content=prompt)
+        ]
+        aiMessage:AIMessage= self.brain(messages=messages)
+        return aiMessage.content
+    
     def clear_doubts(self):
-        prompt=PrompBook.expand_requirements(self.requirement)
-        doubts:str=self.brain(prompt)
+        prompt=PromptBook.expand_requirements(self.requirement)
+        doubts=self.brain_storm(prompt)
         doubt_list:List[str]=doubts.split("\n")
         doubt_list=[doubt.strip() for doubt in doubt_list if doubt.strip()!=""]
         print("""
@@ -45,20 +66,19 @@ Cheers! 👨‍💻
         return doubt_list,answer_list
 
     def plan_project(self):
-        prompt=PrompBook.plan_project(self.requirement,self.clarifications)
-        plannings:str=self.brain(prompt)
+        prompt=PromptBook.plan_project(self.requirement,self.clarifications)
+        plannings:str=self.brain_storm(prompt)
         return plannings
     
     def generate_folder_structure(self):
-        prompt=PrompBook.design_folder_structure(
+        prompt=PromptBook.design_folder_structure(
             question=self.requirement,
             plan=self.plannings,
             clarifications=self.clarifications
             )
-        folder_tree_str:str=self.brain(prompt)
+        folder_tree_str:str=self.brain_storm(prompt)
         folder_tree:dict=json.loads(folder_tree_str)
         Utilities.generate_files_and_folders(structure=folder_tree,root_dir=self.root_dir)
-
 
     def develop(self):
         # clearing all doubts

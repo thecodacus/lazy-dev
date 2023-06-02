@@ -3,7 +3,6 @@
 import os
 from dotenv import load_dotenv
 
-from lazydev.modules.prompts import PrompBook
 from .modules.developer import Developer
 
 

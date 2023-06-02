@@ -1,5 +1,8 @@
 
-class PrompBook:
+from typing import List
+
+
+class PromptBook:
     @staticmethod
     def expand_requirements(question:str)->str:
         return f"""
@@ -76,4 +79,20 @@ As your response will go to an automated parser, things to keep in mind all the 
 * do not write the contents of the files that will be done by the next developer
 Begin!
 """
+    @staticmethod
+    def prioritise_file_list(filelist:List[str])->List[str]:
+        list_string='\n'.join(filelist)
+        return f"""
+you are a senior programmer. you going to write a api service.
+below are the file list that you are going to complete in future.
+
+reorder them in a way that most suitable based on how one will be dependent on other
+
+{list_string}
+
+As your response will go to an automated parser, things to keep in mind all the time:
+* only write file list in order nothing else
+* do not write any explanation
+Begin!
+        """
 
