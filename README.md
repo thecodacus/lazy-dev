@@ -1,4 +1,4 @@
-# LazyDev: Automated Coding Project Generator
+# LazyDev: Automated Coding Project
 
 LazyDev is a Python module that utilizes GPT models to create entire coding projects for you. With just a few simple commands, LazyDev can generate a project file tree, write the necessary code, and even test the project for you. Say goodbye to the hassle of setting up projects from scratch and let LazyDev do the heavy lifting for you.
 
