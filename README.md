@@ -15,9 +15,7 @@ LazyDev is a Python module that utilizes GPT models to create entire coding proj
 ## Installation
 
 ```
-git clone https://github.com/thecodacus/lazy-dev.git
-cd lazy-dev
-pip install -r requirements.txt
+pip install lazydev
 ```
 
 LazyDev requires Python 3.6 or above.
@@ -27,7 +25,7 @@ LazyDev requires Python 3.6 or above.
 Using LazyDev is as simple as running a single command. Once installed, you can initiate the project generation process by executing the following command:
 
 ```
-python -m lazydev.develop -r <what you want to do>
+lazydev develop -r <what you want to do>
 ```
 
 Replace `<what you want to do>` with a brief description of your project's purpose or objective. LazyDev will then prompt you with a series of questions to gather the necessary information for project generation.
@@ -39,7 +37,7 @@ After answering the questions, LazyDev will proceed to plan the project structur
 Let's say you want to create a Python web application for managing a book library. You can use LazyDev to automate the project setup. Here's an example command:
 
 ```
-python -m lazydev.develop -r "Book Library Web App"
+lazydev develop -r "Book Library Web App"
 ```
 
 LazyDev will ask you questions like:
