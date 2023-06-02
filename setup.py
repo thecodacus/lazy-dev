@@ -1,21 +1,37 @@
 from setuptools import find_packages, setup
 
-with open('requirements.txt') as f:
-    requirements = f.read().splitlines()
+with open('README.md', 'r', encoding='utf-8') as f:
+    readme = f.read()
 
 setup(
     name="lazydev",
     version='0.0.2',
-    description='AI developer for lazy programmer',
     packages=find_packages(),
-    install_requires=requirements,
-    author='Anirban Kat',
-    author_email='thecodacus@gmail.com',
+    install_requires=[
+        "langchain>=0.0.188",
+        "openai>=0.27.7"
+    ],
     entry_points={
         'console_scripts': [
             'lazydev = lazydev:run',
         ],
     },
+    author='Anirban Kat',
+    author_email='thecodacus@gmail.com',
+    description='AI developer for lazy programmer',
+    long_description=readme,  # Assign the contents of README.md to long_description
+    long_description_content_type='text/markdown',  # Specify the type of long description
+    url='https://github.com/thecodacus/lazy-dev',
+    classifiers=[
+        'Development Status :: 5 - Production/Stable',
+        'Intended Audience :: Developers',
+        'License :: OSI Approved :: Apache Software License',
+        'Operating System :: OS Independent',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
+        'Programming Language :: Python :: 3.10',
+    ],
     # other relevant information
 
     # # You can specify package data if needed
