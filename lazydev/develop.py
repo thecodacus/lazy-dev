@@ -28,5 +28,6 @@ def run(args):
     directory= args.directory
     load_dotenv()
     api_key = os.environ.get('OPENAI_API_KEY')
-    developer =Developer(requirement=requirement,root_dir=directory,openai_api_key=api_key)
+    model=args.model
+    developer =Developer(requirement=requirement,root_dir=directory,openai_api_key=api_key,model=model)
     developer.develop()

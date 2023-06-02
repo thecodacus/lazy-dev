@@ -127,8 +127,11 @@ now you are about to write content the following file:
 As your response will go to an automated parser, things to keep in mind all the time:
 * follow the exact format provided above without fail
 * only write the file content, no expiation, no pretext.
-* always add comments at the begening, which expains what you are about to do
+* if the language support, add comments at steps, which expains what you are about to do, dont add comment if comment is not supported by the file type example json file
 * keep in mind there wont be any additional files other then the full files list given above, only use files that are mentioned in that list
 Begin!
+
+File:{file_path_to_write}
+Content:
 """
 
