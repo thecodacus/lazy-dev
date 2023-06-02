@@ -1,6 +1,8 @@
-# LazyDev: Automated Coding Project
+# LazyDev: Automating Coding Projects
 
-`Lazyness is the mother of invention`
+```
+Lazyness is the mother of invention 😉
+```
 
 LazyDev is a Python module that utilizes GPT models to create entire coding projects for you. With just a few simple commands, LazyDev can generate a project file tree, write the necessary code, and even test the project for you. Say goodbye to the hassle of setting up projects from scratch and let LazyDev do the heavy lifting for you.
 
@@ -14,21 +16,34 @@ LazyDev is a Python module that utilizes GPT models to create entire coding proj
 
 ## Installation
 
-```
+LazyDev requires Python 3.6 or above.
+```shell
 pip install lazydev
 ```
+### setup environment 
 
-LazyDev requires Python 3.6 or above.
+first setup your shell with openai api key in the environment. I would recommend  adding it to your ~/.bashrc
+```bash
+echo 'export OPENAI_API_KEY="your_openai_key"' >> ~/.bashrc && source ~/.bashrc
+```
+
+### for zsh users:
+```zsh
+echo 'export OPENAI_API_KEY="your_openai_key"' >> ~/.zshrc && source ~/.zshrc
+```
+
+Replace `your_openai_key` with your openai api key 
+ 
 
 ## Usage
 
 Using LazyDev is as simple as running a single command. Once installed, you can initiate the project generation process by executing the following command:
 
-```
-lazydev develop -r <what you want to do>
+```shell
+lazydev develop -r "what ever you want to do"
 ```
 
-Replace `<what you want to do>` with a brief description of your project's purpose or objective. LazyDev will then prompt you with a series of questions to gather the necessary information for project generation.
+Replace `what ever you want to do` with a brief description of your project's purpose or objective. LazyDev will then prompt you with a series of questions to gather the necessary information for project generation.
 
 After answering the questions, LazyDev will proceed to plan the project structure, create the appropriate file tree, generate the required code files, and even run tests to verify the functionality.
 
@@ -36,7 +51,7 @@ After answering the questions, LazyDev will proceed to plan the project structur
 
 Let's say you want to create a Python web application for managing a book library. You can use LazyDev to automate the project setup. Here's an example command:
 
-```
+```shell
 lazydev develop -r "Book Library Web App"
 ```
 
