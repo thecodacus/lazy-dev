@@ -1,17 +1,14 @@
-
-
+from argparse import _SubParsersAction, ArgumentParser
 import os
 from dotenv import load_dotenv
-
 from .modules.developer import Developer
 
 
-
-def parse_args():
+def setup_parser(sub_parsers:_SubParsersAction):
     # putting import inside so that code can be moved to saperate files and we dont keep the import at top of this file
-    import argparse
     # Create the argument parser
-    parser = argparse.ArgumentParser(description='Lazy Dev Argguments')
+    parser = sub_parsers.add_parser(name='develop', help='develop command for new project creation')
+    
 
     # Add the "--requirements" argument with the "-r" shortcut
     parser.add_argument('--requirement', '-r', required=True, type=str, help='The initial requirement')
@@ -19,14 +16,14 @@ def parse_args():
     # Add the "--directory" argument with the "-d" shortcut
     parser.add_argument('--directory', '-d', default="./code", type=str, help='The directory path to put generated files')
 
+    parser.add_argument('--model', '-m', default="gpt-3.5-turbo", type=str, help='GPT Mode to use. options: gpt-3.5-turbo, gpt-4')
 
-    args = parser.parse_args()
+    parser.set_defaults(func=run)
 
-    return args 
+    return parser
 
-if __name__ == "__main__":
-    # print(PrompBook.design_folder_structure("","",""))
-    args=parse_args()
+def run(args):
+
     requirement = args.requirement
     directory= args.directory
     load_dotenv()

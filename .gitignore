@@ -3,3 +3,7 @@ __pycache__
 code
 .venv
 thoughts
+dist
+build
+.DS_Store
+*.egg-info
