@@ -8,7 +8,7 @@ LazyDev is a Python module that utilizes GPT models to create entire coding proj
 
 ## Features
 
-- **Effortless project initialization**: Simply use the `python -m lazydev.develop -r <what you want to do>` command to kickstart the project generation process.
+- **Effortless project initialization**: Simply use the `lazydev develop -r "I want to develop a game"` command to kickstart the project generation process.
 - **Interactive question-based approach**: LazyDev asks relevant questions to gather essential information before starting the coding process, ensuring that the generated project meets your specific requirements.
 - **Complete project planning**: LazyDev plans the entire project structure based on the gathered information, setting up the necessary directories and files for you.
 - **Automated code generation**: The module automatically generates the code based on the project plan, saving you time and effort.
