@@ -135,3 +135,46 @@ File:{file_path_to_write}
 Content:
 """
 
+    def get_code_feedback(draft:str,question,clarifications:str,plan:str,files_written:List[List[str]], file_path_to_write:str,file_paths:List[str])->str:
+        file_with_conent="\n\n".join([f"File:{file_path}\nContent:\n{content}" for file_path,content in files_written])
+        all_files_list="\n".join(file_paths)
+        return f"""
+you are a senior programmer below is what your client have asked you to do:
+---
+{question}
+---
+here are some clarrification on the requirements
+---
+{clarifications}
+---
+below is the what you have already planed what to do:
+---
+{plan}
+---
+Below are the full files list that already has been or will be written
+--
+{all_files_list}
+--
+
+you are now writing the code below are the files that already written with content as follows:
+---
+{file_with_conent}
+---
+
+now you are about to write content the following file:
+{file_path_to_write}
+
+below is one of the draft version of the code:
+---
+{draft}
+---
+
+your job is to find problems with the code and refine it. 
+
+As your response will go to an automated parser, things to keep in mind all the time:
+* if no refinement is required then just say NONE, and nothing else
+* only write the file content, no expiation, no pretext as this will directly go as code.
+* if the language support, add comments at steps, which expains what you are about to do, dont add comment if comment is not supported by the file type example json file
+* keep in mind there wont be any additional files other then the full files list given above, only use files that are mentioned in that list
+Begin!
+"""

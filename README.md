@@ -75,7 +75,7 @@ This project is licensed under the Apache-2.0 License. See the [LICENSE](https:/
 
 LazyDev was inspired by the desire to automate the initial setup and coding process for various projects. The underlying GPT models used in this module were developed by OpenAI.
 
-It is inspired by the project [smol-ai/developer](https://github.com/smol-ai/developer), and the principle `Build the thing that builds all the things.`
+It is inspired by the project [smol-ai/developer](https://github.com/smol-ai/developer), and the principle `Build the thing that builds all the things`
 
 ## Contact
 

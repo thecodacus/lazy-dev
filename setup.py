@@ -5,7 +5,7 @@ with open('README.md', 'r', encoding='utf-8') as f:
 
 setup(
     name="lazydev",
-    version='0.0.6',
+    version='0.0.7',
     packages=find_packages(),
     install_requires=[
         "langchain>=0.0.188",
@@ -20,7 +20,8 @@ setup(
     author_email='thecodacus@gmail.com',
     description='AI developer for lazy programmer',
     long_description=readme,  # Assign the contents of README.md to long_description
-    long_description_content_type='text/markdown',  # Specify the type of long description
+    # Specify the type of long description
+    long_description_content_type='text/markdown',
     url='https://github.com/thecodacus/lazy-dev',
     classifiers=[
         'Development Status :: 5 - Production/Stable',
