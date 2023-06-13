@@ -179,11 +179,15 @@ below is one of the draft version of the code:
 your job is to find problems with the code and refine it. 
 
 As your response will go to an automated parser, things to keep in mind all the time:
-* if no refinement is required then just say NONE, and nothing else
+* if no refinement is required then just say "NONE", and nothing else
 * only write the file content, no expiation, no pretext as this will directly go as code.
 * if the language support, add comments at steps, which expains what you are about to do, dont add comment if comment is not supported by the file type example json file
 * keep in mind there wont be any additional files other then the full files list given above, only use files that are mentioned in that list
 Begin!
+
+File: {file_path_to_write}
+
+Refined code:
 """
 
     def get_compressed_code(code: str):

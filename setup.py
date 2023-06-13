@@ -5,7 +5,7 @@ with open('README.md', 'r', encoding='utf-8') as f:
 
 setup(
     name="lazydev",
-    version='0.0.8',
+    version='0.0.9',
     packages=find_packages(),
     install_requires=[
         "langchain>=0.0.188",
@@ -46,3 +46,8 @@ setup(
     # ],
 
 )
+
+# steps to build and publish
+# source .venv/bin/activate
+# python -m bild
+# twine upload dist/*

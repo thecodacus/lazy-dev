@@ -166,8 +166,9 @@ Cheers! 👨‍💻
                 )
                 response = self.brain_storm(
                     review_prompt, f'code-{file_path.split("/")[-1]}')
-                response = response.strip('"\'`-\n')
-                if (response.strip('"\'`-\n') == "NONE"):
+                response = response.strip('."\'`-\n')
+                nonecheck_response = response.split("\n")[0].split(" ")[0]
+                if (nonecheck_response.strip('."\'`-\n') == "NONE"):
                     break
                 code = response
 
