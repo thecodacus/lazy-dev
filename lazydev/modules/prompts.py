@@ -4,7 +4,7 @@ from typing import List
 
 class PromptBook:
     @staticmethod
-    def expand_requirements(question:str)->str:
+    def expand_requirements(question: str) -> str:
         return f"""
 you are a senior programmer below is what your client have asked you to do:
 ---
@@ -22,8 +22,9 @@ As your response will go to an automated parser, things to keep in mind all the 
 
 Begin!
 """
+
     @staticmethod
-    def plan_project(question:str, clarification:str)->str:
+    def plan_project(question: str, clarification: str) -> str:
         return f"""
 you are a senior programmer below is what your client have asked you to do:
 ---
@@ -43,8 +44,9 @@ As your response will go to an automated parser, things to keep in mind all the 
 * be detailed so junior developer can understand very easily
 Begin!
 """
+
     @staticmethod
-    def design_folder_structure(question:str,plan:str,clarifications:str)->str:
+    def design_folder_structure(question: str, plan: str, clarifications: str) -> str:
         return f"""
 you are a senior programmer below is what your client have asked you to do:
 ---
@@ -78,9 +80,10 @@ As your response will go to an automated parser, things to keep in mind all the 
 * do not write the contents of the files that will be done by the next developer
 Begin!
 """
+
     @staticmethod
-    def prioritise_file_list(filelist:List[str])->List[str]:
-        list_string='\n'.join(filelist)
+    def prioritise_file_list(filelist: List[str]) -> List[str]:
+        list_string = '\n'.join(filelist)
         return f"""
 you are a senior programmer. you going to write a api service.
 below are the file list that you are going to complete in future.
@@ -94,10 +97,12 @@ As your response will go to an automated parser, things to keep in mind all the 
 * do not write any explanation
 Begin!
         """
+
     @staticmethod
-    def write_file(question,clarifications:str,plan:str,files_written:List[List[str]], file_path_to_write:str,file_paths:List[str])->str:
-        file_with_conent="\n\n".join([f"File:{file_path}\nContent:\n{content}" for file_path,content in files_written])
-        all_files_list="\n".join(file_paths)
+    def write_file(question, clarifications: str, plan: str, files_written: List[List[str]], file_path_to_write: str, file_paths: List[str]) -> str:
+        file_with_conent = "\n\n".join(
+            [f"File:{file_path}\nContent:\n{content}" for file_path, content in files_written])
+        all_files_list = "\n".join(file_paths)
         return f"""
 you are a senior programmer below is what your client have asked you to do:
 ---
@@ -127,6 +132,7 @@ now you are about to write content the following file:
 As your response will go to an automated parser, things to keep in mind all the time:
 * follow the exact format provided above without fail
 * only write the file content, no expiation, no pretext.
+* code should be readable.
 * if the language support, add comments at steps, which expains what you are about to do, dont add comment if comment is not supported by the file type example json file
 * keep in mind there wont be any additional files other then the full files list given above, only use files that are mentioned in that list
 Begin!
@@ -135,9 +141,10 @@ File:{file_path_to_write}
 Content:
 """
 
-    def get_code_feedback(draft:str,question,clarifications:str,plan:str,files_written:List[List[str]], file_path_to_write:str,file_paths:List[str])->str:
-        file_with_conent="\n\n".join([f"File:{file_path}\nContent:\n{content}" for file_path,content in files_written])
-        all_files_list="\n".join(file_paths)
+    def get_code_feedback(draft: str, question, clarifications: str, plan: str, files_written: List[List[str]], file_path_to_write: str, file_paths: List[str]) -> str:
+        file_with_conent = "\n\n".join(
+            [f"File:{file_path}\nContent:\n{content}" for file_path, content in files_written])
+        all_files_list = "\n".join(file_paths)
         return f"""
 you are a senior programmer below is what your client have asked you to do:
 ---
@@ -178,3 +185,26 @@ As your response will go to an automated parser, things to keep in mind all the 
 * keep in mind there wont be any additional files other then the full files list given above, only use files that are mentioned in that list
 Begin!
 """
+
+    def get_compressed_code(code: str):
+        return f"""
+compress the code below as best as you can, dont rename any data:
+```
+{code}
+```
+As your response will go to an automated parser, things to keep in mind all the time:
+* only output code and nothing else
+* do not rename and content of the code suck as variable names and public function names
+Begin!
+        """
+
+    def get_compressed_text(text: str):
+        return f"""
+compress the content of the text below as best as you can:
+```
+{text}
+```
+As your response will go to an automated parser, things to keep in mind all the time:
+* only respond with the compressed text and nothing else
+Begin!
+        """

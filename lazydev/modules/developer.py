@@ -61,8 +61,12 @@ class Developer():
         clarifications = ""
         for i in range(len(doubts)):
             clarifications = f"{clarifications}\n\n{i+1}. {doubts[i]}\n Ans: {answers[i]}"
-        self.clarifications = clarifications
-        return clarifications
+
+        compressed_clarrifications = self.brain_storm(
+            PromptBook.get_compressed_text(clarifications), "compressed_clarrifications")
+        self.clarifications = compressed_clarrifications
+
+        return compressed_clarrifications
 
     def clear_doubts(self):
         doubt_list = self.get_doubts()
@@ -90,8 +94,10 @@ Cheers! 👨‍💻
     def plan_project(self):
         prompt = PromptBook.plan_project(self.requirement, self.clarifications)
         plannings: str = self.brain_storm(prompt, 'plan-project')
-        self.plannings = plannings
-        return plannings
+        compressed_plan = self.brain_storm(
+            PromptBook.get_compressed_text(plannings), "compressed_plan")
+        self.plannings = compressed_plan
+        return compressed_plan
 
     def generate_folder_structure(self):
         prompt = PromptBook.design_folder_structure(
@@ -166,9 +172,12 @@ Cheers! 👨‍💻
                 code = response
 
         Utilities.write_to_file(code, file_path=file_path)
+        # compress the code
+        compressed_code = self.brain_storm(PromptBook.get_compressed_code(
+            code), f'code-compressed-{file_path.split("/")[-1]}')
         self.files_written.append((
             file_path,
-            code
+            compressed_code
         ))
 
     def develop(self):
