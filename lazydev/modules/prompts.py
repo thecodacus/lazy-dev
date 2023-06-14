@@ -77,15 +77,18 @@ Now based on this write a json object to design file tree.
 As your response will go to an automated parser, things to keep in mind all the time:
 * follow the exact format provided above without fail
 * only write the json nothing else, no expiation, no pretext 
-* do not write the contents of the files that will be done by the next developer
+* only write the folders and files structure
 Begin!
 """
 
     @staticmethod
-    def prioritise_file_list(filelist: List[str]) -> List[str]:
+    def prioritise_file_list(filelist: List[str], plan: str | None = None) -> List[str]:
         list_string = '\n'.join(filelist)
+        plan = 'below is the project plan:\n---'+plan+"\n---" if plan != None else ""
         return f"""
-you are a senior programmer. you going to write a api service.
+you are a senior programmer. you going to write a program for client.
+
+{plan}
 below are the file list that you are going to complete in future.
 
 reorder them in a way that most suitable based on how one will be dependent on other
@@ -141,7 +144,14 @@ File:{file_path_to_write}
 Content:
 """
 
-    def get_code_feedback(draft: str, question, clarifications: str, plan: str, files_written: List[List[str]], file_path_to_write: str, file_paths: List[str]) -> str:
+    def get_code_feedback(
+            draft: str,
+            question,
+            clarifications: str,
+            plan: str,
+            files_written: List[List[str]],
+            file_path_to_write: str,
+            file_paths: List[str]) -> str:
         file_with_conent = "\n\n".join(
             [f"File:{file_path}\nContent:\n{content}" for file_path, content in files_written])
         all_files_list = "\n".join(file_paths)
@@ -212,3 +222,38 @@ As your response will go to an automated parser, things to keep in mind all the 
 * only respond with the compressed text and nothing else
 Begin!
         """
+
+    def generate_instruction(question, clarifications: str, plan: str, files_written: List[List[str]], file_paths: List[str]) -> str:
+        file_with_conent = "\n\n".join(
+            [f"File:{file_path}\nContent:\n{content}" for file_path, content in files_written])
+        all_files_list = "\n".join(file_paths)
+        return f"""
+you are a senior programmer below is what your client have asked you to do:
+---
+{question}
+---
+here are some clarrification on the requirements
+---
+{clarifications}
+---
+below is the what you have already planed what to do:
+---
+{plan}
+---
+Below are the full files list that already has been or will be written
+--
+{all_files_list}
+--
+
+you are now writing the code below are the files that already written with content as follows:
+---
+{file_with_conent}
+---
+
+now you are need to give client further instruction on what you have developped and how to use it, basically write instruction for the client
+
+As your response will go to an automated parser, things to keep in mind all the time:
+* make the instruction clear and simple 
+
+Begin!
+"""

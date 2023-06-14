@@ -126,7 +126,8 @@ Cheers! 👨‍💻
         return self.root_folder_name, self.file_paths
 
     def prioratize_files(self):
-        prompt = PromptBook.prioritise_file_list(self.file_paths)
+        prompt = PromptBook.prioritise_file_list(
+            self.file_paths, self.plannings)
         retry_count = 3
         while retry_count > 0:
             try:
@@ -181,6 +182,17 @@ Cheers! 👨‍💻
             compressed_code
         ))
 
+    def final_instruction(self):
+        prompt = PromptBook.generate_instruction(
+            question=self.requirement,
+            clarifications=self.clarifications,
+            plan=self.plannings,
+            files_written=self.files_written,
+            file_paths=self.file_paths
+        )
+        instruction = self.brain_storm(prompt, f'instructions')
+        return instruction
+
     def develop(self):
         # clearing all doubts
         doubts, answers = self.clear_doubts()
@@ -202,4 +214,6 @@ Cheers! 👨‍💻
             if (file_name.split(".")[-1] in ["png", "jpg", "jpeg", "bimp", "lock"]):
                 continue
             print(f"\nWriting Code for :{file_name}")
-            self.write_file_content(file_path, review_iteration=2)
+            self.write_file_content(file_path, review_iteration=1)
+        print("\n\nI am done!!!\n\n")
+        print(self.final_instruction())
