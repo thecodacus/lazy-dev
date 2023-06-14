@@ -39,13 +39,30 @@ Replace `your_openai_key` with your openai api key
 
 Using LazyDev is as simple as running a single command. Once installed, you can initiate the project generation process by executing the following command:
 
+### Sample
+
 ```shell
-lazydev develop -r "what ever you want to do"
+lazydev develop --requirement REQUIREMENT
 ```
 
-Replace `what ever you want to do` with a brief description of your project's purpose or objective. LazyDev will then prompt you with a series of questions to gather the necessary information for project generation.
+Replace `REQUIREMENT` with a brief description of your project's purpose or objective. LazyDev will then prompt you with a series of questions to gather the necessary information for project generation.
 
 After answering the questions, LazyDev will proceed to plan the project structure, create the appropriate file tree, generate the required code files, and even run tests to verify the functionality.
+
+
+### Flags
+you can use the following flags :
+
+*options:*
+
+* `-h`, `--help`            show this help message and exit
+
+* `--requirement REQUIREMENT`, `-r REQUIREMENT` # The initial requirement
+
+* `--directory DIRECTORY`, `-d DIRECTORY` # The directory path to put generated files default is `./code`
+
+* `--model MODEL`, `-m MODEL` # GPT Mode to use. options: gpt-3.5-turbo, gpt-3.5-turbo-16k, gpt-4. default: gpt-3.5-turbo-16k
+
 
 ## Example
 
