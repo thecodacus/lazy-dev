@@ -112,7 +112,7 @@ Cheers! 👨‍💻
                 folder_tree_str: str = self.brain_storm(
                     prompt, "generate-filders")
                 folder_tree: dict = json.loads(
-                    folder_tree_str.strip().strip("`"))
+                    folder_tree_str.strip().strip("```json").strip("`"))
                 break
             except:
                 print("Opps messed up the json format, let me try again")
